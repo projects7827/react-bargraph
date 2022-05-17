@@ -2,6 +2,58 @@
     display: $value;
 }
 
+#root {
+    overflow: hidden;
+    width: 100vw;
+}
+
+.mainHeader {
+    display: flex;
+    background: #4682B4;
+    color: white;
+    width: 100vw;
+    margin-bottom: 60px;
+    height: 83px;
+
+    margin-top: -10px;
+
+
+    & .mainHeader__heading {
+        padding-left: 25px;
+        font-size: 27px;
+        display: flex;
+        padding-top: 6px;
+        place-items: center;
+    }
+
+    & .mainHeader__changeData {
+        display: block;
+        outline: none;
+        color: #4682B4;
+        padding: 10px 14px;
+        font-size: 14px;
+        margin: auto;
+        border: none;
+        background: white;
+        border-radius: 5px;
+        font-weight: 600;
+        margin-right: 25px;
+        margin-top: 28px;
+        cursor: pointer;
+    }
+
+}
+
+.barGraph {
+    display: flex;
+    margin-right: auto;
+    border-radius: 5px;
+    padding: 10px;
+    place-items: center;
+    font-weight: 600;
+    justify-content: center;
+}
+
 // @mixin widthProcessing($value) {}
 
 
@@ -39,16 +91,19 @@ body {
             font-size: 14px;
             margin-top: -11px;
         }
+
+        & img {
+            width: 85%;
+            margin-top: 45px;
+        }
     }
 
 
-    & img {
-        width: 85%;
-        margin-top: 45px;
 
-    }
 
     & .form__right {
+
+        position: relative;
         @include display(grid);
         padding-top: 35px;
         padding-bottom: 40px;
@@ -58,6 +113,19 @@ body {
             margin: 0px;
             font-size: 31px;
             margin-left: -3px;
+        }
+
+        & .form__alert {
+            position: absolute;
+            height: 50px;
+            font-weight: 600;
+            width: 100%;
+            display: flex;
+            top: -15px;
+            font-size: 19px;
+            color: white;
+            place-items: center;
+            justify-content: center;
         }
 
         & label {
@@ -119,5 +187,6 @@ body {
 }
 
 .bar {
-    fill: steelblue;
+
+    transition: all 1s;
 }

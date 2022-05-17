@@ -2,11 +2,14 @@ import { useD3 } from './d3';
 import React, { useState } from 'react';
 import * as d3 from 'd3';
 
-const Graph = () => {
+const Graph = (prop) => {
   const [state, updateState] = useState({ data: [{ "year": 1980, "sales": 10000 }] });
+  const heightDiffernce = 160;
+  const widthDiffernce = 80;
 
   React.useEffect(() => {
     getRandomData();
+    document.body.style.margin="auto";
   }, [])
 
   const getRandomData = () => {
@@ -23,14 +26,10 @@ const Graph = () => {
   }
 
 
-  React.useEffect(() => {
-
-    console.log(state.data);
-  }, [state["data"]])
   const ref = useD3(
     (svg) => {
-      const height = 500;
-      const width = 500;
+      const height = window.innerHeight - heightDiffernce;
+      const width = window.innerWidth - widthDiffernce;
       const margin = { top: 20, right: 30, bottom: 30, left: 40 };
 
       const x = d3
@@ -72,11 +71,11 @@ const Graph = () => {
               .text(state.data.y1)
           );
 
-      svg.select(".x-axis").call(xAxis);
-      svg.select(".y-axis").call(y1Axis);
+      svg.select(".barGraph__x-axis").call(xAxis);
+      svg.select(".barGraph__y-axis").call(y1Axis);
 
       svg
-        .select(".plot-area")
+        .select(".barGraph__plot-area")
         .attr("fill", "steelblue")
         .selectAll(".bar")
         .data(state.data)
@@ -91,21 +90,31 @@ const Graph = () => {
   );
 
   return (<>
-    <svg
-      ref={ref}
-      style={{
-        height: 500,
-        width: "100%",
-        marginRight: "0px",
-        marginLeft: "0px",
-      }}
-    >
-      <g className="plot-area" />
-      <g className="x-axis" />
-      <g className="y-axis" />
-    </svg>
 
-    <button onClick={getRandomData}>Change Value</button>
+    <header className='mainHeader'>
+      <h1 className='mainHeader__heading'>Welcome {prop.name}</h1>
+      <button onClick={getRandomData} className="mainHeader__changeData">Change Value</button>
+
+    </header>
+    <div className='barGraph'>
+
+      <svg
+        ref={ref}
+        style={{
+          height: window.innerHeight - heightDiffernce,
+          width: window.innerWidth - widthDiffernce,
+          marginRight: "0px",
+          marginLeft: "0px",
+        }}
+      >
+        <g className="barGraph__plot-area" />
+        <g className="barGraph__x-axis" />
+        <g className="barGraph__y-axis" />
+      </svg>
+
+    </div>
+
+
   </>);
 }
 
