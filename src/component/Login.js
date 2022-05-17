@@ -59,12 +59,14 @@ const Login = () => {
         else if (value["form__password"].value === "" || value["form__password"].value === undefined) {
             showAlert("failure", "Enter Password");
         }
-        else if (value["form__password"].value !== value["form__confirm-password"].value) {
-            showAlert("failure", "Password not matching");
-        }
+      
         else if (value["form__confirm-password"].value === "" || value["form__confirm-password"].value === undefined) {
             showAlert("failure", "Enter Confirmation Password");
         }
+        else if (value["form__password"].value !== value["form__confirm-password"].value) {
+            showAlert("failure", "Password not matching");
+        }
+       
 
         else if (value["form__password"].value.length < 8) {
             showAlert("failure", "Invalid Password");
