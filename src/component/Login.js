@@ -117,9 +117,9 @@ const Login = () => {
                         <label className='form__label'>Your Email Address</label>
                         <input type="text" className='form__email' ref={el => ref.current["form__email"] = el}></input>
                         <label className='form__label'>Your Password</label>
-                        <input type="text" className='form__password' ref={el => ref.current["form__password"] = el}></input>
+                        <input type="password" className='form__password' ref={el => ref.current["form__password"] = el}></input>
                         <label className='form__label'>Confirm your password</label>
-                        <input type="text" className='form__confirm-password' ref={el => ref.current["form__confirm-password"] = el}></input>
+                        <input type="password" className='form__confirm-password' ref={el => ref.current["form__confirm-password"] = el}></input>
                         <label className='form__label'>Your Full Name</label>
                         <input type="text" className='form__name' ref={el => ref.current["form__name"] = el}></input>
                         <label className='form__label'>Your Phone Number</label>

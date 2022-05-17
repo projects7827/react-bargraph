@@ -92,7 +92,7 @@ const Graph = (prop) => {
   return (<>
 
     <header className='mainHeader'>
-      <h1 className='mainHeader__heading'>Welcome {prop.name}</h1>
+      <h1 className='mainHeader__heading'>Welcome {prop.name} !!! </h1>
       <button onClick={getRandomData} className="mainHeader__changeData">Change Value</button>
 
     </header>
