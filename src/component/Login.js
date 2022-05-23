@@ -6,7 +6,7 @@ import Graph from "./Graph";
 
 const Login = () => {
     const ref = useRef({});
-    const [state, updateState] = React.useState({ "isLoggedIn": getCookie("pt-login") !== "" ? true : false, "name": "" });
+    const [state, updateState] = React.useState({ "isLoggedIn": getCookie("pt-login") !== "" ? true : false, "name": getCookie("pt-name") });
 
     function validateEmail(email) {
         let res = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; //eslint-disable-line
@@ -14,11 +14,11 @@ const Login = () => {
     }
 
 
-    function setCookie() {
+    function setCookie(key, value) {
         const d = new Date();
         d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
         let expires = "expires=" + d.toUTCString();
-        document.cookie = "pt-login" + "=" + true + ";" + expires + ";path=/";
+        document.cookie = key + "=" + value + ";" + expires + ";path=/";
     }
 
 
@@ -59,14 +59,14 @@ const Login = () => {
         else if (value["form__password"].value === "" || value["form__password"].value === undefined) {
             showAlert("failure", "Enter Password");
         }
-      
+
         else if (value["form__confirm-password"].value === "" || value["form__confirm-password"].value === undefined) {
             showAlert("failure", "Enter Confirmation Password");
         }
         else if (value["form__password"].value !== value["form__confirm-password"].value) {
             showAlert("failure", "Password not matching");
         }
-       
+
 
         else if (value["form__password"].value.length < 8) {
             showAlert("failure", "Invalid Password");
@@ -84,7 +84,8 @@ const Login = () => {
             showAlert("failure", "Read and check terms and conditions ");
         }
         else {
-            setCookie();
+            setCookie("pt-login", true);
+            setCookie("pt-name", value["form__name"].value)
             showAlert("success", "Account Created Successfully");
             setTimeout(() => {
                 updateState({ ...state, "isLoggedIn": true, "name": value["form__name"].value })
